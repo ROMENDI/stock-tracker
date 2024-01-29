@@ -1,0 +1,10 @@
+ <% if @stock_info %>
+    <h1>Stock Information for <%= @stock_info['symbol'] %></h1>
+    <p><strong>Company Name:</strong> <%= @stock_info['companyName'] %></p>
+    <p><strong>Latest Price:</strong> $<%= @stock_info['latestPrice'] %></p>
+     <p><strong>52-Week High:</strong> $<%= @stock_info['week52High'] %></p>
+    <p><strong>52-Week Low:</strong> $<%= @stock_info['week52Low'] %></p>
+  <% else %>
+    <p><%= @error_message %></p>
+  <% end %>
+  <a href="/">Back to Search</a>
