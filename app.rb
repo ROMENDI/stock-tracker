@@ -8,14 +8,22 @@ end
 
 get '/stock' do
   symbol = params['symbol']
-  api_url = "https://cloud.iexapis.com/stable/stock/#{symbol}/quote?token=#{ENV["STOCK_KEY"]}"
-  response = HTTP.get(api_url)
+  stock_url = "https://cloud.iexapis.com/stable/stock/#{symbol}/quote?token=#{ENV['STOCK_KEY']}"
+  news_url = "https://cloud.iexapis.com/stable/stock/#{symbol}/news/last/1?token=#{ENV['STOCK_KEY']}"
 
-  if response.status.success?
-    @stock_info = response.parse(:json)
+  stock_response = HTTP.get(stock_url)
+  news_response = HTTP.get(news_url)
+
+  if stock_response.status.success?
+    @stock_info = stock_response.parse(:json)
   else
     @error_message = "Unable to fetch stock data."
   end
-  
-  erb(:stock)
-end 
+
+  if news_response.status.success?
+    @news_info = news_response.parse(:json)
+  end
+
+  erb :stock
+end
+

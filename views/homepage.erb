@@ -1,5 +1,59 @@
-<form action="/stock" method="get">
-  <label for="symbol">Enter Stock Symbol:</label>
-  <input type="text" name="symbol" id="symbol">
-  <input type="submit" value="Get Stock">
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    h1 {
+        font-size: 3rem; /* Larger font size for the header */
+        font-weight: bold; /* Bold font weight */
+      }
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #121212; 
+      color: #ffffff; 
+    }
+    .container {
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+    input[type="text"], input[type="submit"] {
+      width: 80%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 2px solid #333333;
+      background-color: #1a1a1a; 
+      color: #ffffff; 
+    }
+    input[type="submit"] {
+      background-color: #0d6efd; 
+      border-color: #0d6efd;
+    }
+    input[type="submit"]:hover {
+      background-color: #0b5ed7; 
+      border-color: #0a58ca;
+    }
+    label {
+      color: #ffffff; 
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Stock Tracker</h1>
+    <form action="/stock" method="get">
+      <label for="symbol">Enter Stock Ticker Symbol:</label>
+      <input type="text" name="symbol" id="symbol">
+      <input type="submit" value="Get Stock">
+    </form>
+  </div>
+</body>
+</html>

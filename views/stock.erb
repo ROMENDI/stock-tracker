@@ -1,10 +1,118 @@
- <% if @stock_info %>
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #121212; /* Dark background */
+      color: #ffffff; /* Light text */
+    }
+    .container {
+      width: 80%;
+      max-width: 1800px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .column {
+      background-color: #1a1a1a; /* Slightly lighter background for columns */
+      padding: 20px;
+      border-radius: 10px;
+    }
+    h2, h3, p {
+      margin: 0;
+      margin-bottom: 15px;
+    }
+     .btn-back {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0d6efd;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .news-excerpt-note {
+    font-size: 0.8rem;
+    color: #cccccc;
+    font-style: italic;
+  }
+    .btn-back:hover {
+      background-color: #0b5ed7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="column">
+       <% if @stock_info %>
     <h1>Stock Information for <%= @stock_info['symbol'] %></h1>
     <p><strong>Company Name:</strong> <%= @stock_info['companyName'] %></p>
     <p><strong>Latest Price:</strong> $<%= @stock_info['latestPrice'] %></p>
      <p><strong>52-Week High:</strong> $<%= @stock_info['week52High'] %></p>
     <p><strong>52-Week Low:</strong> $<%= @stock_info['week52Low'] %></p>
-  <% else %>
-    <p><%= @error_message %></p>
+    <% else %>
+      <p><%= @error_message %></p>
+    <% end %>
+    </div>
+    <div class="column">
+        <% if @news_info %>
+  <h2>Latest News</h2>
+   <% if @news_info && !@news_info.empty? %>
+  <% @news_info.each do |news_item| %>
+    <div class="news-item">
+      <h3><a href="<%= news_item['url'] %>"><%= news_item['headline'] %></a></h3>
+       <% if news_item['summary'] && !news_item['summary'].empty? %>
+        <p><%= news_item['summary'] %></p>
+        <p class="news-excerpt-note">Summary of Article</p>
+      <% end %>
+    </div>
   <% end %>
-  <a href="/">Back to Search</a>
+   <% else %>
+    <p>There are no recent news articles for this stock.</p>
+  <% end %>
+<% end %>
+</div>
+<div style="grid-column: 1 / -1; text-align: center; margin-top: 20px;">
+      <a href="/" class="btn-back">Back to Search</a>
+    </div>
+  </div>
+</body>
+</html>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
